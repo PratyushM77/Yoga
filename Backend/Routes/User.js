@@ -4,12 +4,27 @@ const User = require("../Models/UserModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const AuthenticateUser = require("../Auth/UserAuth");
-
+require("dotenv").config()
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
  if (!username || !email || !password) {
     return res.status(404).json({ message: "All fields are required" });
   }
+  
+   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ message: "Invalid email format" });
+  }
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?#&^])[A-Za-z\d@$!%*?#&^]{8,}$/;
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({
+      message:
+        "Password must be at least 8 characters long, include uppercase, lowercase, number and special character",
+    });
+  }
+
   try {
     const checkuser = await User.findOne({ email });
     if (checkuser) {
@@ -47,7 +62,7 @@ router.post("/login", async (req, res) => {
 
     const token = jwt.sign(
       { id: identity._id, email: identity.email },
-      "12345",
+      process.env.JWT_SECRET,
       {
         expiresIn: "24h",
       }
@@ -55,8 +70,8 @@ router.post("/login", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
     });
     console.log(token);
 
@@ -72,8 +87,8 @@ router.get("/logout", AuthenticateUser, async (req, res) => {
   
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
-    secure: false,
+    sameSite: "none",
+    secure: true,
   });
    res.status(200).json({
       message: "Login Successfully!",
