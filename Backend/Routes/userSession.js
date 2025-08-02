@@ -85,7 +85,7 @@ router.get("/my-sessions", AuthenticateUser, async (req, res) => {
   }
 });
 
-router.get("/my-sessions/draft/:id", async (req, res) => {
+router.get("/my-sessions/draft/:id", AuthenticateUser,async (req, res) => {
   const id = req.params.id;
 
   try {
@@ -99,7 +99,7 @@ router.get("/my-sessions/draft/:id", async (req, res) => {
   }
 });
 
-router.delete("/deletedraft/:id",async(req,res)=>{
+router.delete("/deletedraft/:id",AuthenticateUser,async(req,res)=>{
   const id = req.params.id
   try {
     const deletedraft = await DraftSession.findOneAndDelete({_id:id})

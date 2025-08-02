@@ -24,7 +24,7 @@ function Navbar() {
     if (!confirmLogout) return;
 
     try {
-      const response = await fetch("http://localhost:3000/logout", {
+      const response = await fetch("https://yoga-backend-53u6.onrender.com/logout", {
         method: "GET",
         credentials: "include",
       });

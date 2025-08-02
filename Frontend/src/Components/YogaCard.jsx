@@ -14,8 +14,10 @@ function YogaCard({ pose, onClick }) {
       <div className="flex h-cover">
         <div className="w-full h-40 bg-white flex justify-center items-center overflow-hidden rounded-t-xl">
           <img
-            src={pose?.url_png ||                           "https://cdn.prod.website-files.com/65302a23c6b1d938427b07fe/666c4a49e519be9e21c75d64_yoga%20blog%20photo.jpg"}
-           
+            src={
+              pose?.url_png ||
+              "https://cdn.prod.website-files.com/65302a23c6b1d938427b07fe/666c4a49e519be9e21c75d64_yoga%20blog%20photo.jpg"
+            }
             alt={pose?.english_name || "Yoga Pose"}
             className="h-full w-auto"
           />
@@ -37,11 +39,10 @@ function YogaCard({ pose, onClick }) {
           <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full font-semibold">
             Category: Pose
           </span>
-        <div className="text-xs text-c px-2 py-1 rounded-full font-semibold">
+          <div className="text-xs text-c px-2 py-1 rounded-full font-semibold">
             By: {pose.creator || "Anonymous"}
           </div>
         </div>
-
       </div>
     </motion.div>
   );

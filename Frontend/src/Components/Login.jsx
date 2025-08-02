@@ -24,7 +24,7 @@ function Login() {
       handleError("Name and Email should be atleast of 8 characters");
     } else {
       try {
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("https://yoga-backend-53u6.onrender.com/login", {
           method: "POST",
           body: JSON.stringify(formData),
           headers: {

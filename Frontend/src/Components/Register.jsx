@@ -29,7 +29,7 @@ function Register() {
       return;
     } 
       try {
-        const response = await fetch("http://localhost:3000/register", {
+        const response = await fetch("https://yoga-backend-53u6.onrender.com/register", {
           method: "POST",
           body: JSON.stringify(formData),
           headers: {

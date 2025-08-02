@@ -14,7 +14,7 @@ function Mysessions() {
   const fetchsession = async () => {
     try {
       const response = await fetch(
-       !toggleSession?`http://localhost:3000/my-sessions/${user_id}`:"http://localhost:3000/my-sessions",
+       !toggleSession?`https://yoga-backend-53u6.onrender.com/my-sessions/${user_id}`:"https://yoga-backend-53u6.onrender.com/my-sessions",
         {
           method: "GET",
           credentials: "include",

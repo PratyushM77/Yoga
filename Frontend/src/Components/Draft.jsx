@@ -11,7 +11,7 @@ function Draft() {
   const getdraft = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3000/my-sessions/draft/${user_id}`,
+        `https://yoga-backend-53u6.onrender.com/my-sessions/draft/${user_id}`,
         {
           method: "GET",
           credentials: "include",
@@ -40,7 +40,7 @@ function Draft() {
 
   const Deletedraft = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/deletedraft/${id}`, {
+      const response = await fetch(`https://yoga-backend-53u6.onrender.com/deletedraft/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
