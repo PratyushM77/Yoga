@@ -47,6 +47,7 @@ Yoga/
 
 ## 📦 Local Setup
 
+Allow access to third part cookies in browser 🍪
 ```bash
 git clone https://github.com/PratyushM77/Yoga.git
 
