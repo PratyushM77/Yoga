@@ -19,19 +19,25 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
+  
+
     e.preventDefault();
-    if (formData.email.length == "" || formData.password.length == "") {
-      handleError("Name and Email should be atleast of 8 characters");
-    } else {
+     if (!formData.email || !formData.password) {
+      handleError("Email and Password are required");
+      return;
+    }else {
       try {
-        const response = await fetch("https://yoga-backend-53u6.onrender.com/login", {
-          method: "POST",
-          body: JSON.stringify(formData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
+        const response = await fetch(
+          "https://yoga-backend-53u6.onrender.com/login",
+          {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
+        );
         const result = await response.json();
         if (!response.ok) {
           console.log(result.message);
