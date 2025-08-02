@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-
+require("dotenv").config()
 mongoose.connect(
-  "mongodb+srv://Pratyush77:Pratyush2003@cluster0.lbuigvs.mongodb.net/"
+  process.env.URI
 );
 const db = mongoose.connection;
 db.on("connected", () => {
