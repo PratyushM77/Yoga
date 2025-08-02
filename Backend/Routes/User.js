@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
     );
 
     res.cookie("token", token, {
-      httpOnly: false,
+      httpOnly: true,
       secure: false,
       sameSite: "lax",
     });
@@ -71,7 +71,7 @@ router.get("/logout", AuthenticateUser, async (req, res) => {
   console.log("logout hit");
   
   res.clearCookie("token", {
-    httpOnly: false,
+    httpOnly: true,
     sameSite: "lax",
     secure: false,
   });
