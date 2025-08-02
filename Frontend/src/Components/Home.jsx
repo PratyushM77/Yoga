@@ -10,7 +10,7 @@ function Home() {
   // const navigate = useNavigate();
 
   const fetchapi = async (selectedLevel = level) => {
-    // this api is publicly available -> https://github.com/alexcumplido/yoga-api 
+    // this api is publicly available -> https://github.com/alexcumplido/yoga-api
     const response = await fetch(
       `https://yoga-api-nzy4.onrender.com/v1/poses?level=${selectedLevel}`,
       {
@@ -19,7 +19,6 @@ function Home() {
     );
     const result = await response.json();
     if (response.ok) {
-      console.log(result.poses);
       setYogaData(result.poses);
       handleSuccess("Fetching data from an api");
     } else {
@@ -85,7 +84,6 @@ function Home() {
                 key={index}
                 onClick={() => {
                   setSelectedPose(pose);
-                  console.log("clicked on pose", pose.id);
                 }}
                 pose={pose}
               />

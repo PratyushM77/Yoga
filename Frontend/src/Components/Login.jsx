@@ -19,13 +19,11 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-  
-
     e.preventDefault();
-     if (!formData.email || !formData.password) {
+    if (!formData.email || !formData.password) {
       handleError("Email and Password are required");
       return;
-    }else {
+    } else {
       try {
         const response = await fetch(
           "https://yoga-backend-53u6.onrender.com/login",
@@ -40,12 +38,10 @@ function Login() {
         );
         const result = await response.json();
         if (!response.ok) {
-          console.log(result.message);
           handleError(result.message || "Login failed");
           // localStorage.setItem("myUserId",result.)
         }
         if (response.ok) {
-          console.log(result);
           localStorage.setItem("isloggedIn", true);
           handleSuccess(result.message);
           setformData({ email: "", password: "" });

@@ -14,7 +14,9 @@ function Mysessions() {
   const fetchsession = async () => {
     try {
       const response = await fetch(
-       !toggleSession?`https://yoga-backend-53u6.onrender.com/my-sessions/${user_id}`:"https://yoga-backend-53u6.onrender.com/my-sessions",
+        !toggleSession
+          ? `https://yoga-backend-53u6.onrender.com/my-sessions/${user_id}`
+          : "https://yoga-backend-53u6.onrender.com/my-sessions",
         {
           method: "GET",
           credentials: "include",
@@ -24,14 +26,12 @@ function Mysessions() {
 
       if (response.ok && result.session) {
         handleSuccess("Getting your data");
-        console.log(result);
+
         setgetData(result.session);
-      } 
-      else{
+      } else {
         localStorage.clear();
         navigate("/login");
         handleError("Kindly Login");
-
       }
     } catch (error) {
       console.error(error);
@@ -40,9 +40,9 @@ function Mysessions() {
   useEffect(() => {
     fetchsession();
   }, [toggleSession]);
-  const otherSession=()=>{
-    settoggleSession(!toggleSession)
-  }
+  const otherSession = () => {
+    settoggleSession(!toggleSession);
+  };
 
   return (
     <>
@@ -52,13 +52,19 @@ function Mysessions() {
             <h1 className="text-4xl font-bold text-gray-800 mb-2">
               Your Session
             </h1>
-            
-<label className="inline-flex items-center cursor-pointer">
-  <input onClick={otherSession} type="checkbox" value="" className="sr-only peer"/>
-  <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
-  <span  className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-500">Get Everyone's Session</span>
-</label>
 
+            <label className="inline-flex items-center cursor-pointer">
+              <input
+                onClick={otherSession}
+                type="checkbox"
+                value=""
+                className="sr-only peer"
+              />
+              <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
+              <span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-500">
+                Get Everyone's Session
+              </span>
+            </label>
           </div>{" "}
           <div className="flex flex-wrap justify-center gap-6">
             {getData.map((pose, index) => (
@@ -66,7 +72,6 @@ function Mysessions() {
                 key={index}
                 onClick={() => {
                   setSelectedPose(pose);
-                  console.log("clicked on pose", pose._id);
                 }}
                 pose={pose}
                 initial={{ opacity: 0, y: 40 }}
@@ -77,7 +82,10 @@ function Mysessions() {
                 <div className="flex h-cover">
                   <div className="w-full h-40 bg-white flex justify-center items-center overflow-hidden rounded-t-xl">
                     <img
-                      src={pose?.json_file_url || "https://cdn.prod.website-files.com/65302a23c6b1d938427b07fe/666c4a49e519be9e21c75d64_yoga%20blog%20photo.jpg" }
+                      src={
+                        pose?.json_file_url ||
+                        "https://cdn.prod.website-files.com/65302a23c6b1d938427b07fe/666c4a49e519be9e21c75d64_yoga%20blog%20photo.jpg"
+                      }
                       alt={pose?.english_name || "Yoga Pose"}
                       className="h-full w-auto"
                     />

@@ -32,7 +32,6 @@ function Draft() {
   useEffect(() => {
     getdraft();
   }, [draftdeleted]);
-  console.log(draftData);
 
   const takemeThere = () => {
     navigate("/publishsession");
@@ -53,7 +52,7 @@ function Draft() {
       const result = await response.json();
       if (response.ok) {
         handleSuccess("Draft Deleted");
-        console.log(result.message);
+
         setDraftdeleted(true);
       } else {
         const text = await response.text();
@@ -111,7 +110,7 @@ function Draft() {
                       Category: Pose
                     </span>
                     <div className="text-xs text-c px-2 py-1 rounded-full font-semibold">
-                      By: {"Anonymous"}
+                      By: {draft?.creator || "Anonymous"}
                     </div>
                   </div>
                   <div className="mt-4 flex justify-between gap-3">

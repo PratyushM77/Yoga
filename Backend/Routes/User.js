@@ -73,17 +73,17 @@ router.post("/login", async (req, res) => {
       secure: true,
       sameSite: "none",
     });
-    console.log(token);
+   
 
     res.status(201).json({ message: "Login successfully!" ,user_id: identity._id});
   } catch (error) {
-    console.log(console.error(error));
+    (console.error(error))
     res.status(500).json({ message: error.message });
   }
 });
 
 router.get("/logout", AuthenticateUser, async (req, res) => {
-  console.log("logout hit");
+  
   
   res.clearCookie("token", {
     httpOnly: true,

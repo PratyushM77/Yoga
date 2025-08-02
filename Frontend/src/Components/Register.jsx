@@ -27,35 +27,34 @@ function Register() {
     ) {
       handleError("All fields are required!!");
       return;
-    } 
-      try {
-        const response = await fetch("https://yoga-backend-53u6.onrender.com/register", {
+    }
+    try {
+      const response = await fetch(
+        "https://yoga-backend-53u6.onrender.com/register",
+        {
           method: "POST",
           body: JSON.stringify(formData),
           headers: {
             "Content-Type": "application/json",
           },
           credentials: "include",
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          console.log(result.message);
-          handleError(result.message || "Registration failed");
         }
-        else {
-          console.log(result);
-          handleSuccess(result.message);
-          setFormData({ email: "", password: "", username: "" });
+      );
 
-          navigate("/login");
-        }
-      } catch (error) {
-        console.error(error);
-        handleError(result.message || "Something went wrong");
+      const result = await response.json();
+
+      if (!response.ok) {
+        handleError(result.message || "Registration failed");
+      } else {
+        handleSuccess(result.message);
+        setFormData({ email: "", password: "", username: "" });
+
+        navigate("/login");
       }
-    
+    } catch (error) {
+      console.error(error);
+      handleError(result.message || "Something went wrong");
+    }
   };
 
   return (

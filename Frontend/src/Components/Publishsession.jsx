@@ -24,21 +24,23 @@ function SessionForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
-    const response = await fetch("https://yoga-backend-53u6.onrender.com/my-session/publish", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://yoga-backend-53u6.onrender.com/my-session/publish",
+      {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }
+    );
 
     const result = await response.json();
     if (response.ok) {
       handleSuccess(result.message);
-      console.log(result.message);
+
       setformData({
         title: "",
         tags: "",

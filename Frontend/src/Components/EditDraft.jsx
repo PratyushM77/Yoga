@@ -5,8 +5,7 @@ import { handleSuccess, handleError } from "../utils";
 function EditDraft() {
   const user_id = localStorage.getItem("user_id");
   const location = useLocation();
-  // const initialData = location.state
-  // console.log(initialData);
+  
 
   const initialData = location.state || {
     _id: "",
@@ -29,7 +28,7 @@ function EditDraft() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    
 
     const response = await fetch(`https://yoga-backend-53u6.onrender.com/my-session/publish`, {
       method: "POST",
@@ -43,7 +42,7 @@ function EditDraft() {
     const result = await response.json();
     if (response.ok) {
       handleSuccess(result.message);
-      console.log(result.message);
+      
       setformData({
         title: "",
         tags: "",
