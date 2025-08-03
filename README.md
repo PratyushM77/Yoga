@@ -54,7 +54,6 @@ git clone https://github.com/PratyushM77/Yoga.git
 open two different terminals 
 
 # Backend
-Server must be running on Port 3000
 
 cd backend
 npm install
@@ -62,7 +61,6 @@ node server.js
 MONGO_URI=your_mongodb_connection_string 
 
 # Frontend
-React must be running on Port 5173
 
 cd frontend
 npm install
