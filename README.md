@@ -58,7 +58,7 @@ Server must be running on Port 3000
 
 cd backend
 npm install
-node --watch server.js / nodemon serve.js 
+node server.js
 MONGO_URI=your_mongodb_connection_string 
 
 # Frontend
