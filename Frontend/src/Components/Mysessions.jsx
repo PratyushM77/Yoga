@@ -43,6 +43,18 @@ function Mysessions() {
   const otherSession = () => {
     settoggleSession(!toggleSession);
   };
+  useEffect(() => {
+  if (getData.length === 0) {
+    const timeout = setTimeout(() => {
+      const ask = window.confirm("Create your session first");
+      if (ask || !ask) {
+        navigate("/publishsession");
+      }
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }
+}, [getData]);
+
 
   return (
     <>
@@ -126,8 +138,10 @@ function Mysessions() {
           <Loader />
         </div>
       )}
+      
     </>
   );
+  
 }
 
 export default Mysessions;
